@@ -11,6 +11,9 @@ services:
       - ./php/src:/var/www/html/
     ports:
       - 8080:80
+    environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
 
   db:
     container_name: vanilla-way-db
@@ -18,9 +21,11 @@ services:
     restart: always
     environment:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        MYSQL_DATABASE: ${MY_DATABASE}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
         - "9906:3306"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
   
   adminer:
     container_name: vanilla-way-adminer
