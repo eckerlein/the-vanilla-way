@@ -8,7 +8,7 @@ $db = getenv('MYSQL_DATABASE');
 
 
 // check the MySQL connection status
-$conn = new mysqli($host, 'root', $pass, getenv('MYSQL_DATABASE'));
+$conn = new mysqli($host, 'root', $pass, $db);
 
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
